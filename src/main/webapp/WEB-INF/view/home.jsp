@@ -23,6 +23,7 @@
   <!-- Custom styles for this template-->
   <link href="/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
 
+  <!-- 캘린더 템플릿 script -->
   <script>
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -125,6 +126,7 @@
     });
 
   </script>
+  <!-- 캘린더 style -->
   <style>
 
     body {
@@ -145,7 +147,7 @@
   </style>
 
 </head>
-
+<!-- startbootstrap -->
 <body id="page-top">
 
 <!-- Page Wrapper -->
