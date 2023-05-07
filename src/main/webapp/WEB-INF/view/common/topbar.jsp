@@ -72,7 +72,7 @@
       </c:if>
       <!-- 로그인 안 한 경우 -->
       <c:if test="${sessionScope.loginUser == null}">
-        <button class="btn btn-outline-dark" onclick="location.href='/user/login'">로그인</button>
+        <button class="btn btn-outline-dark" onclick="location.href='/login'">로그인</button>
       </c:if>
     </li>
   </ul>

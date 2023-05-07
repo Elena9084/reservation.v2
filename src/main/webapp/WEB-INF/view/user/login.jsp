@@ -36,7 +36,7 @@
 			<input type="checkbox" value="remember-y"> 아이디 기억하기
 		</label>
 	</div>
-	<button class="w-100 btn btn-lg btn-outline-orange" type="submit" style="border-color: #858ce0; background-color: #858ce0; ">로그인</button>
+	<button class="w-100 btn btn-lg btn-outline-orange" type="submit" style="border-color: #4e73df; background-color: #4e73df; color: white; ">로그인</button>
 </form>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
