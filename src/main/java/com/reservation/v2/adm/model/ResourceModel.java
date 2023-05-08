@@ -14,7 +14,6 @@ public class ResourceModel {
     private String resourceCode;    // resourceCode = menuCode + M001 이런식으로
     private String resourceName;    // 소회의실1F, 중회의실1F, 대회의실2F
     private String resourceLocation;
-    private int resourceSort;
     private String useYn;
     private String regUserId;
     private Date createDate;

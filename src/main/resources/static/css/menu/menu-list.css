@@ -7,14 +7,9 @@ html, body {
   padding: 0;
   box-sizing: border-box;
 }
-.container{
-  height: 100vh;
-  border: solid 1px #c3baba;
-}
 
 .filter-container{
   height: 18rem;
-
 }
 .list-container{
   height: 36rem;

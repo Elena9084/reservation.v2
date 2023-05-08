@@ -37,6 +37,7 @@
     </div>
   </li>
 
+  <c:if test="${sessionScope.loginUser != null}">
   <!-- Divider -->
   <hr class="sidebar-divider">
 
@@ -46,34 +47,35 @@
   </div>
 
   <!-- Nav Item - Utilities Collapse Menu -->
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-       aria-expanded="true" aria-controls="collapseUtilities">
-      <span>자원관리</span>
-    </a>
-    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-         data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="utilities-color.html">자원조회</a>
-        <a class="collapse-item" href="utilities-border.html">자원등록</a>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+         aria-expanded="true" aria-controls="collapseUtilities">
+        <span>자원관리</span>
+      </a>
+      <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+           data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" onclick="location.href='/resource?menuCode=R001&resourceLocation=한남'">자원조회</a>
+          <a class="collapse-item" onclick="location.href='/resource/add'">자원등록</a>
+        </div>
       </div>
-    </div>
-  </li>
+    </li>
 
 
 
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-       aria-expanded="true" aria-controls="collapsePages">
-      <span>사용자관리</span>
-    </a>
-    <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="login.html">사용자 조회</a>
-        <a class="collapse-item" href="register.html">사용자 등록</a>
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+         aria-expanded="true" aria-controls="collapsePages">
+        <span>사용자관리</span>
+      </a>
+      <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="login.html">사용자 조회</a>
+          <a class="collapse-item" href="register.html">사용자 등록</a>
+        </div>
       </div>
-    </div>
-  </li>
+    </li>
+  </c:if>
 </ul>
 <!-- End of Sidebar -->

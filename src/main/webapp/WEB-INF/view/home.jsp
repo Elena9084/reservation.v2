@@ -8,19 +8,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+
+  <!-- 부트스트랩 아이콘 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
+  <!-- 캘린더 템플릿 -->
   <script src='/fullcalendar/dist/index.global.js'></script>
   <script src='/fullcalendar/packages/core/locales/ko.js'></script>
 
 
   <title>메인</title>
 
-  <!-- Custom fonts for this template-->
+  <!-- startbootstrap Custom fonts for this template-->
   <link href="/bootstrap/css/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link
           href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
 
-  <!-- Custom styles for this template-->
+  <!-- startbootstrap  Custom styles for this template-->
   <link href="/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
 
   <!-- 캘린더 템플릿 script -->

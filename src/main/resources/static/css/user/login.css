@@ -1,11 +1,6 @@
-@charset "UTF-8";
-
-html, body {
-  width: 100%;
+html,
+body {
   height: 100%;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -17,22 +12,15 @@ body {
 }
 
 .form-signin {
-  width: 100%;
   max-width: 330px;
   padding: 15px;
-  margin: auto;
-  border: solid 1px #b5b5b5
-}
-
-.form-signin .checkbox {
-  font-weight: 400;
 }
 
 .form-signin .form-floating:focus-within {
   z-index: 2;
 }
 
-.form-signin input[type="email"] {
+.form-signin input[type="text"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -42,22 +30,4 @@ body {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-}
-
-.ml-4{
-  margin-left: 74px;
-}
-
-.btn-outline-orange{
-  border-color: #858ce0;
-  color: #858ce0;
-}
-
-.checkbox{
-  margin-top : 20px;
-}
-
-.error-msg{
-  color: red;
-  font-size: small;
 }

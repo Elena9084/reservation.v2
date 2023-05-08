@@ -7,7 +7,7 @@
 
     <select id="selectUserOne" resultType="com.reservation.v2.csm.model.UserModel">
         SELECT *
-        FROM reservationdb.reg_user
+        FROM REG_USER
         WHERE USER_ID = #{userId} AND PASSWORD = #{password}
     </select>
 
