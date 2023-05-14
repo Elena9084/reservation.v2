@@ -36,7 +36,7 @@ public class UserController {
         if(login != null){
             log.info("loginExec 컨트롤러 로그인 성공 login : {}", login);
             session.setAttribute("loginUser", login);
-            return "redirect:/home";
+            return "redirect:/reservation";
         }else {
             log.info("loginExec 컨트롤러 로그인 실패");
             model.addAttribute("error", "올바른 정보를 입력해주세요.");
@@ -49,7 +49,7 @@ public class UserController {
     public String logout(HttpSession session){
         log.info("logout 컨트롤러");
         session.invalidate();
-        return "redirect:/home";
+        return "redirect:/reservation";
     }
 
 

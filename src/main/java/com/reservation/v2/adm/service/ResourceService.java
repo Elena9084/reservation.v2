@@ -11,6 +11,8 @@ public interface ResourceService {
 	int addResourceOne(ResourceModel resource, String menuCode);
 	ResourceModel selectResourceOne(String resourceCode);
 
+	int modifyResourceOne(ResourceModel resourceModel);
+
 //	int modifyResourceOne(ResourceModel resource);
 
 }

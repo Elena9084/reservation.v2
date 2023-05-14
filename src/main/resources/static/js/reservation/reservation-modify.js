@@ -1,6 +1,6 @@
-const reservationSave = () =>{
+const reservationModify = () => {
 
-  const resourceCode = document.getElementsByName("resourceCode")[0].value;
+  const reservationSeq = document.getElementsByName("reservationSeq")[0].value;
   const reservationStartDate = document.getElementsByName("reservationStartDate");
   const reservationEndDate = document.getElementsByName("reservationEndDate");
   const note = document.getElementsByName("note");
@@ -10,28 +10,30 @@ const reservationSave = () =>{
   const fullStartDate = new Date(fullStartStr);
   const fullEndDate = new Date(fullEndStr);
 
-  console.log("reservation js - resourceCode, fullStartDate, fullEndDate, note", resourceCode, fullStartDate, fullEndDate, note[0].value);
+  console.log("reservation js - reservationSeq, fullStartDate, fullEndDate, note", reservationSeq, fullStartDate, fullEndDate, note[0].value);
 
   const reservationModel = {
-    "resourceCode" : resourceCode,
+    "reservationSeq" : reservationSeq,
     "reservationStartDate" :fullStartDate,
     "reservationEndDate" : fullEndDate,
     "note" : note[0].value,
   };
 
   $.ajax({
-    method : "POST",
+    method : "PATCH",
     url : "/reservation",
     data : JSON.stringify(reservationModel),
     contentType : "application/json; charset=utf-8",
     dataType : "text",
     success : function (data) {
-      alert("예약되었습니다.");
-      location.href = "/reservation";
+      alert("수정되었습니다.");
+      location.href = "/myReservation";
     },
     error : function (e) {
-      alert("예약 실패하였습니다.");
+      alert("수정 실패하였습니다.");
       console.log(e);
     }
   });
+
+
 }

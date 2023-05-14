@@ -20,5 +20,9 @@ public class ResourceModel {
     private String modifyUserId;
     private Date updateDate;
 
+    private String menuCode;    // menuCode = R001, H001, C001
+
+    private String changeMenuCode;  // 얘로 값을 바꿔야 함(수정에서 필요)
+
 
 }

@@ -4,8 +4,9 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<%--  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">--%>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -149,6 +150,19 @@
       color: #06060b;
     }
 
+    .fc .fc-toolbar-title{
+      font-size: 1em;
+    }
+
+
+  </style>
+  <style>
+
+    @media (max-width: 768px) {
+      .btn-example {
+        margin-top: 20px;
+      }
+    }
   </style>
 
 </head>

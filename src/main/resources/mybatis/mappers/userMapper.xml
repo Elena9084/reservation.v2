@@ -9,7 +9,13 @@
         SELECT *
         FROM REG_USER
         WHERE USER_ID = #{userId} AND PASSWORD = #{password}
+        AND DELETE_YN = 'N'
+        AND REGISTRATION_YN = 'Y'
     </select>
+
+
+
+
 
 
 </mapper>

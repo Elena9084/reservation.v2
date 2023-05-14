@@ -1,15 +1,22 @@
 package com.reservation.v2.adm.controller;
 
+import com.reservation.v2.adm.dao.ResourceDao;
 import com.reservation.v2.adm.model.ResourceModel;
 import com.reservation.v2.adm.service.ResourceService;
 import java.lang.ProcessBuilder.Redirect;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +46,13 @@ public class ResourceController {
         }else {
             model.addAttribute("resourceList", resourceList);
         }
+        Map<String, String> menuMap = new HashMap<>();
+        menuMap.put("R001", "회의실");
+        menuMap.put("H001", "헬스키퍼");
+        menuMap.put("C001", "차량");
+
+        model.addAttribute("menuMap", menuMap);
+
         return "/resource/list";
     }
 
@@ -66,29 +80,47 @@ public class ResourceController {
         }else if(result == -1) {
             log.info("resourceExec 컨트롤러 중복된 자원이름이 존재합니다.");
             model.addAttribute("msg", "중복된 자원이름이 존재합니다.");
+            redirect.addAttribute("menuCode", menuCode);
+            redirect.addAttribute("resourceLocation", resource.getResourceLocation());
         }else {
             log.info("resourceExec 컨트롤러 자원 등록에 성공하였습니다.");
             model.addAttribute("msg", "자원 등록에 성공하였습니다.");
+            redirect.addAttribute("success", "자원등록 성공");
             redirect.addAttribute("menuCode", menuCode);
             redirect.addAttribute("resourceLocation", resource.getResourceLocation());
         }
-
 
         return "redirect:/resource";
     }
 
 
     // 자원 수정 화면
-    public String modifyResource(Model model, @RequestParam("resourceCode") String resourceCode){
+    @GetMapping("/api/resource")
+    public ResponseEntity<Object> modifyResource(Model model, @RequestParam("resourceCode") String resourceCode){
         // resourceId로 자원 정보를 가져온다.
         ResourceModel resource = resourceService.selectResourceOne(resourceCode);
         if(resource == null){
             log.info("modifyResource 컨트롤러 자원이 존재하지 않습니다.");
             model.addAttribute("msg", "자원이 존재하지 않습니다.");
         }else {
-            model.addAttribute("resource", resource);
+            log.info("modifyResource 컨트롤러 자원이 존재합니다.");
         }
-        return "/resource/modify";
+        return new ResponseEntity<>(resource, org.springframework.http.HttpStatus.OK);
+    }
+
+    // 자원 수정
+    @PatchMapping("/resource")
+    public ResponseEntity<Object> modifyResourceOneExec(@RequestBody ResourceModel resource){
+        log.info("modifyResourceOne 컨트롤러 자원 수정 ResourceModel : {}", resource);
+        int result  = resourceService.modifyResourceOne(resource);
+        if(result == 1){
+            log.info("컨트롤러 - 자원수정에 성공");
+        }else {
+            log.info("컨트롤러 - 자원수정에 실패");
+        }
+
+        return new ResponseEntity<>("success", org.springframework.http.HttpStatus.OK);
+
     }
 
 

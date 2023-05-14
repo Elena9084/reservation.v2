@@ -22,6 +22,6 @@ public interface ResourceDao {
 	ResourceModel selectResourceOne(@Param("resourceCode") String resourceCode);
 
 	// 자원 수정
-//	int updateResourceOne(@Param(""));
+	int updateResourceOne(@Param("resource") ResourceModel resource);
 
 }

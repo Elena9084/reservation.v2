@@ -54,4 +54,17 @@ public class ResourceServiceImpl implements ResourceService {
         return result;
     }
 
+    @Override
+    public int modifyResourceOne(ResourceModel resourceModel) {
+        int result = resourceDao.updateResourceOne(resourceModel);
+
+        if(result == 1){
+            log.info("modifyResourceOne 서비스 자원 수정 성공");
+        }else {
+            log.info("modifyResourceOne 서비스 자원 수정 실패");
+        }
+
+        return result;
+    }
+
 }

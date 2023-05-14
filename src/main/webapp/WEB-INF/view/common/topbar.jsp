@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!-- Topbar -->
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -67,7 +68,7 @@
       </c:if>
       <!-- 로그인 안 한 경우 -->
       <c:if test="${sessionScope.loginUser == null}">
-        <button class="btn btn-outline-dark" onclick="location.href='/login'" style="margin-right: 15px;">로그인</button>
+        <button class="btn btn-outline-dark btn-sm btn-example" onclick="location.href='/login'" style="margin-right: 15px;">로그인</button>
       </c:if>
     </li>
   </ul>
