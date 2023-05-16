@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- mapper DTD 선언 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.reservation.v2.adm.dao.AdmUserDao">
+	<select id="selectUserList" resultType="com.reservation.v2.csm.model.UserModel">
+		SELECT U.USER_ID as userId, U.USER_NAME as userName, U.PASSWORD as password, U.MANAGER_YN as managerYn, U.EMAIL as email,
+		       U.PHONE_NUM as phoneNum, U.REGISTRATION_YN as registrationYn, U.DEPARTMENT_CODE as departmentCode,
+		       U.POSITION_CODE as positionCode, C.CODE_NAME AS departmentName
+		FROM RES_USER U LEFT JOIN COM_CODE C ON U.DEPARTMENT_CODE = C.CODE
+		WHERE DELETE_YN = 'N'
+		<if test="userName != null and userName = ''">
+		AND U.USER_NAME LIKE '%' || #{userName} || '%'
+		</if>
+		<if test="departmentCode != null and departmentCode != ''">
+		AND U.DEPARTMENT_CODE = #{departmentCode}
+		</if>
+	</select>
+
+	<select id="selectPositionOne" resultType="string">
+		SELECT CODE_NAME AS positionName FROM COM_CODE
+		                       WHERE GROUP_CODE = 'POSITION_GROUP'
+							   AND CODE = #{positionCode}
+
+	</select>
+
+	<select id="selectDepartmentList" resultType="com.reservation.v2.csm.model.departmentModel">
+		SELECT CODE as departmentCode , CODE_NAME as department_name FROM COM_CODE WHERE GROUP_CODE = 'DEPARTMENT_GROUP'
+	</select>
+
+	<update id="updateUserAuth">
+		UPDATE RES_USER SET MANAGER_YN = #{managerYn}
+		                WHERE USER_ID = #{userId}
+	</update>
+
+	<update id="updateUserRegistration">
+		UPDATE RES_USER SET REGISTRATION_YN = #{registrationYn}
+						WHERE USER_ID = #{userId}
+	</update>
+
+	<select id="selectPositionList" resultType="com.reservation.v2.csm.model.PositionModel">
+		SELECT CODE AS positionCode, CODE_NAME AS positionName FROM COM_CODE WHERE GROUP_CODE = 'POSITION_GROUP'
+	</select>
+
+	<insert id="insertUserOne" parameterType="com.reservation.v2.csm.model.UserModel">
+		INSERT INTO RES_USER(USER_ID, USER_NAME, PASSWORD, MANAGER_YN, PHONE_NUM, REGISTRATION_YN, DELETE_YN, REG_USER_ID, CREATE_DATE, DEPARTMENT_CODE, POSITION_CODE)
+		VALUES (#{user.userId}, #{user.userName}, '1234', #{user.managerYn}, #{user.phoneNum}, 'Y', 'N', 'manager', SYSDATE, #{user.departmentCode}, #{user.positionCode})
+	</insert>
+
+	<delete id="deleteUserOne">
+		DELETE FROM RES_USER WHERE USER_ID = #{userId}
+	</delete>
+</mapper>

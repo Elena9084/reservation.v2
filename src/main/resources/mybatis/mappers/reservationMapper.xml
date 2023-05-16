@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- mapper DTD 선언 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.reservation.v2.csm.dao.ReservationDao">
+
+	<resultMap type="com.reservation.v2.csm.model.Calendar" id="calendar">
+		<result property="id" column="RESERVATION_SEQ"/>
+		<result property="start" column="RESERVATION_START_DATE"/>
+		<result property="end" column="RESERVATION_END_DATE"/>
+		<result property="title" column="NOTE"/>
+		<result property="writer" column="USER_ID"/>
+	</resultMap>
+
+	<!-- 예약 리스트 -->
+	<select id="selectReservationList" resultType="com.reservation.v2.csm.model.Calendar">
+		SELECT R.RESERVATION_SEQ AS id, R.RESOURCE_CODE AS resourceCode
+			 , R.USER_ID AS writer
+			 , TO_CHAR(R.RESERVATION_START_DATE, 'YYYY-MM-DD"T"HH24:MI:SS') AS "start"
+			 , TO_CHAR(R.RESERVATION_END_DATE, 'YYYY-MM-DD"T"HH24:MI:SS') AS "end"
+			 , R.NOTE AS title
+		FROM RES_RESERVATION R
+		WHERE R.RESOURCE_CODE = #{resourceLocation}
+	</select>
+
+	<!-- 자원 리스트 -->
+	<select id="selectResourceList" resultType="com.reservation.v2.adm.model.ResourceModel">
+		SELECT RESOURCE_CODE, RESOURCE_NAME, USE_YN FROM RES_RESOURCE
+		                     WHERE RESOURCE_LOCATION = #{resourceLocation}
+								AND MENU_CODE = #{menuCode}
+		ORDER BY CONVERT(RESOURCE_NAME, 'ISO2022-KR')
+
+
+	</select>
+
+	<!-- 예약등록 -->
+	<insert id="insertReservationOne" parameterType="com.reservation.v2.csm.model.ReservationModel">
+		INSERT INTO RES_RESERVATION(RESERVATION_SEQ, RESOURCE_CODE, USER_ID, RESERVATION_START_DATE, RESERVATION_END_DATE, NOTE,RES_USER_ID, CREATE_DATE)
+		VALUES(SEQ_RESERVATION.nextval, #{reservationModel.resourceCode}
+			, #{reservationModel.userId}
+			, #{reservationModel.reservationStartDate}
+			, #{reservationModel.reservationEndDate}
+			, #{reservationModel.note}
+			, 'manager', sysdate)
+	</insert>
+
+
+	<!-- 예약 상세 -->
+	<select id="selectReservationOne" resultType="com.reservation.v2.csm.model.ReservationModel">
+		SELECT RR.RESERVATION_SEQ, RR.RESOURCE_CODE, RS.RESOURCE_NAME, RR.USER_ID, RR.RESERVATION_START_DATE
+		     , RR.RESERVATION_END_DATE, RR.NOTE
+		FROM RES_RESERVATION RR LEFT JOIN RES_RESOURCE RS ON RR.RESOURCE_CODE = RS.RESOURCE_CODE
+		WHERE RESERVATION_SEQ = #{reservationCode}
+	</select>
+
+	<!-- 자원 하나 -->
+	<select id="selectResourceOne" resultType="com.reservation.v2.adm.model.ResourceModel">
+		SELECT RESOURCE_CODE, RESOURCE_NAME, RESOURCE_LOCATION
+		FROM RES_RESOURCE
+		WHERE RESOURCE_CODE = #{resourceCode}
+	</select>
+
+	<!-- 내 예약 리스트 조회 -->
+	<select id="selectReservationListByUserId" resultType="com.reservation.v2.csm.model.ReservationModel">
+		SELECT R.RESERVATION_SEQ, R.RESOURCE_CODE, RS.RESOURCE_NAME,RS.RESOURCE_LOCATION, R.USER_ID, R.RESERVATION_START_DATE
+		     , R.RESERVATION_END_DATE, R.NOTE
+		FROM RES_RESERVATION R LEFT JOIN RES_RESOURCE RS ON R.RESOURCE_CODE = RS.RESOURCE_CODE
+		WHERE USER_ID = #{userId}
+-- 		ORDER BY R.RESERVATION_START_DATE ASC
+	</select>
+
+	<!--예약 삭제-->
+	<delete id="deleteReservationOne" parameterType="com.reservation.v2.csm.model.ReservationModel">
+		DELETE FROM RES_RESERVATION
+		       WHERE RESERVATION_SEQ = #{reservationSeq}
+	</delete>
+
+	<!-- 예약 수정 -->
+	<update id="updateReservationOne" parameterType="com.reservation.v2.csm.model.ReservationModel">
+		UPDATE RES_RESERVATION SET RESERVATION_START_DATE=#{reservation.reservationStartDate}, RESERVATION_END_DATE = #{reservation.reservationEndDate}
+		                       		, NOTE = #{reservation.note},REG_USER_ID=#{reservation.userId}, UPDATE_DATE = SYSDATE
+		                           WHERE RESERVATION_SEQ = #{reservation.reservationSeq}
+	</update>
+</mapper>
