@@ -26,6 +26,7 @@ public class UserModel {	// empCode X, registrationYn O
 	private String departmentCode;
 	private String departmentName;
 	private String positionCode;
+	private String positionName;
 	private String regUserId;
 	private Date createDate;
 	private String modifyUserId;

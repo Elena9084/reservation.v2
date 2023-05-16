@@ -6,6 +6,7 @@ const modifyResource = () => {
   const location = document.getElementById("location-select").value;
   const type = document.getElementById("modify-type").value;
   const useYn = document.getElementsByClassName("modify-use-yn")[0].value;
+  console.log("useYn", useYn);
 
 
 
@@ -28,8 +29,8 @@ const modifyResource = () => {
     dataType : "text",
     success : function (data) {
         alert("메뉴가 수정되었습니다.");
-        location.href= "/resource?menuCode=" + type + "&resourceLocation=" + location;
-      $('#exampleModal1').modal('hide');
+      document.location.reload();
+
     },
     error : function (e) {
       alert("메뉴 수정에 실패하였습니다.");
@@ -41,11 +42,12 @@ const modifyResource = () => {
 }
 
 
-// // 수정모달 데이터 뿌리기
+// 자원 수정모달 데이터 뿌리기
 const loadModifyModal = (event) => {
-  const resourceCode = event.target.parentElement.previousElementSibling.previousElementSibling.value
+  const resourceCode = event.target.parentElement.previousElementSibling.previousElementSibling.previousElementSibling.value
   console.log("loadModifyModal.js 동작 event.target : " + event.target);
   console.log("loadModifyModal.js 동작 resourceCode : " + resourceCode);
+
   $.ajax({
     method : "get",
     url : "/api/resource?resourceCode=" + resourceCode,
@@ -55,7 +57,7 @@ const loadModifyModal = (event) => {
       const resource = data;
       const resourceCode = resource.resourceCode;
       const resourceName = resource.resourceName;
-      const resourceType = resource.resourceCode.substring(0, 4);
+      const resourceType = resource.menuCode;
       const resourceLocation = resource.resourceLocation;
       const useYn = resource.useYn;
 

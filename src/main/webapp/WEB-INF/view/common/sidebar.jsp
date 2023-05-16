@@ -71,6 +71,7 @@
              data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" onclick="location.href='/resource?menuCode=R001&resourceLocation=한남'">자원조회</a>
+            <a class="collapse-item" onclick="location.href='/resource/add'">자원등록</a>
           </div>
         </div>
       </li>
@@ -86,6 +87,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" onclick="location.href='/adm/user?userName=&department='">사용자 조회</a>
+            <a class="collapse-item" onclick="location.href='/adm/user/add'">사용자 등록</a>
           </div>
         </div>
       </li>

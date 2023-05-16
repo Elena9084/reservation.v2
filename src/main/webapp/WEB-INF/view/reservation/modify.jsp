@@ -95,7 +95,7 @@
     <div class="container"  style="max-width: none; height: 100%;">
       <div>
         <div class="filter-title">
-          <p style="padding-top: 10px; font-weight: bold;" >${resource.resourceName}<p>
+          <p style="padding-top: 10px; font-weight: bold;" >${reservation.resourceName}<p>
         </div>
         <hr>
 

@@ -98,6 +98,7 @@ public class ResourceController {
     @GetMapping("/api/resource")
     public ResponseEntity<Object> modifyResource(Model model, @RequestParam("resourceCode") String resourceCode){
         // resourceId로 자원 정보를 가져온다.
+        log.info("modifyResource 컨트롤러 resourceCode : {}", resourceCode);
         ResourceModel resource = resourceService.selectResourceOne(resourceCode);
         if(resource == null){
             log.info("modifyResource 컨트롤러 자원이 존재하지 않습니다.");

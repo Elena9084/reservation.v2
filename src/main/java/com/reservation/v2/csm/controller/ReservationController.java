@@ -217,8 +217,8 @@ public class ReservationController {
 
 	// 예약 상세
 	@GetMapping(value = "/reservation/detail")
-	public String getReservationOne(@RequestParam("reservationCode")String reservationCode, Model model){	// reservationSeq인데 잘못 적음
-		ReservationModel reservation = reservationService.selectReservationOne(reservationCode);
+	public String getReservationOne(@RequestParam("reservationSeq")String reservationSeq, Model model){
+		ReservationModel reservation = reservationService.selectReservationOne(reservationSeq);
 
 		model.addAttribute("reservation", reservation);
 

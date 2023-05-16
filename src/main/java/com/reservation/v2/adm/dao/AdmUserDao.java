@@ -1,5 +1,6 @@
 package com.reservation.v2.adm.dao;
 
+import com.reservation.v2.csm.model.PositionModel;
 import com.reservation.v2.csm.model.departmentModel;
 import com.reservation.v2.csm.model.UserModel;
 import java.util.List;
@@ -21,4 +22,15 @@ public interface AdmUserDao {
 	// 사용자 등록 여부 수정
 	int updateUserRegistration(@Param("userId") String userId, @Param("registrationYn") String registrationYn);
 
+	// 직급 리스트
+	List<PositionModel> selectPositionList();
+
+	// 사용자 등록
+	int insertUserOne(@Param("user") UserModel user);
+
+	// 직급 하나
+	String selectPositionOne(String positionCode);
+
+	// 사용자 삭제
+	int deleteUserOne(String userId);
 }

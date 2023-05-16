@@ -93,11 +93,100 @@
 							</div>
 						</div>
 					</div>
-					<div class="search-btn-one-container">
-						<button class="btn btn-outline-dark filter-btn search-btn-one search-btn-container" type="submit">조회</button>
+					<div class="search-btn-container">
+						<button class="btn btn-outline-dark filter-btn" style="width: 49.5%;" type="submit">조회</button>
+						<input class="btn btn-outline-dark filter-btn" type="button" style="width: 49.5%" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap" value="사용자등록"> <!-- 모달 버튼 -->
 					</div>
 				</div>
 			</form>
+
+			<!-- 등록 모달 -->
+			<form method="post" action="/adm/user" accept-charset="UTF-8">
+				<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					<div class="modal-dialog" style="max-width: 50rem;">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h1 class="modal-title fs-5" id="exampleModalLabel">사용자 등록</h1>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+							</div>
+							<div class="modal-body">
+								<div class="row mt-2">
+									<div class="col-lg-2 d-none d-lg-block">
+										<p class="modal-p">사용자명</p>
+									</div>
+									<div class="col-lg-10 col-sm-12">
+										<input type="text" class="user-name" name="userName" placeholder="사용자명" style="height: 37px; width: 100%; border-radius: 5px; border: solid 1px #b5b5b5;">
+									</div>
+								</div>
+								<div class="row mt-2">
+									<div class="col-lg-2 d-none d-lg-block">
+										<p class="modal-p">아이디</p>
+									</div>
+									<div class="col-lg-10 col-sm-12">
+										<input type="text" class="user-id" name="userId" placeholder="아이디" style="height: 37px; width: 100%; border-radius: 5px; border: solid 1px #b5b5b5;">
+									</div>
+								</div>
+								<div class="row mt-2">
+									<div class="col-lg-2 d-none d-lg-block">
+										<p class="modal-p">휴대전화</p>
+									</div>
+									<div class="col-lg-10 col-sm-12">
+										<input type="text" class="phone-num" name="phoneNum" placeholder="휴대전화" style="height: 37px; width: 100%; border-radius: 5px; border: solid 1px #b5b5b5;">
+									</div>
+								</div>
+								<div class="row mt-2">
+									<div class="col-lg-2 d-none d-lg-block">
+										<p class="modal-p">부서</p>
+									</div>
+									<div class="col-lg-10 col-sm-12">
+										<select class="form-select location-dropdown" name="departmentCode" aria-label="Default select example">
+											<option selected>부서선택</option>
+											<c:forEach items="${departmentList}" var="department">
+											<option value="${department.departmentCode}">${department.departmentName}</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+								<div class="row mt-2">
+									<div class="col-lg-2 d-none d-lg-block">
+										<p class="modal-p">직급</p>
+									</div>
+									<div class="col-lg-10 col-sm-12">
+										<select class="form-select location-dropdown" name="positionCode" aria-label="Default select example">
+											<option selected>직급선택</option>
+											<c:forEach items="${positionList}" var="position">
+											<option value="${position.positionCode}">${position.positionName}</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+								<div class="row mb-3">
+									<p class="col-lg-2 col-sm-2 modal-p">관리자 여부</p>
+									<div class="col-lg-10 col-sm-10 modal-div">
+										<div class="form-check">
+											<input class="form-check-input" name="managerYn" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="N" checked>
+											<label class="form-check-label" for="flexRadioDefault1">
+												일반
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" name="managerYn" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Y">
+											<label class="form-check-label" for="flexRadioDefault2">
+												관리자
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn" style="border-color: #b5b5b5">등록</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+
+			<!-- 모달 끝 -->
 
 			<!-- 사용자 조회 목록 -->
 			<div class="list-container">
@@ -105,40 +194,59 @@
 					<colgroup>
 						<col style="width: 5%;"/>
 						<col style="width: 10%;"/>
-						<col style="width: 10%;"/>
+						<col style="width: 15%;"/>
+						<col style="width: 15%;"/>
 						<col style="width: 30%;"/>
-						<col style="width: 20%;"/>
 						<col style="width: 10%;"/>
-						<col style="width: 10%;"/>
+						<col style="width: 15%;"/>
 					</colgroup>
 					<thead>
 					<tr>
 						<th scope="col">번호</th>
 						<th scope="col">이름</th>
 						<th scope="col">부서</th>
-						<th scope="col">이메일</th>
+						<th scope="col">직급</th>
 						<th scope="col">휴대전화</th>
 						<th scope="col">관리자</th>
-						<th scope="col">등록</th>
+						<th scope="col">삭제</th>
 					</tr>
 					</thead>
 					<tbody id="noticeList">
 					<c:if test="${userList != null}">
 						<c:forEach var="user" items="${userList}" varStatus="status">
 							<tr>
+								<input id="userId" type="hidden" value="${user.userId}">
 								<td>${status.count}</td>
 								<td>${user.userName}</td>
 								<td>${user.departmentName}</td>
-								<td>${user.email}</td>
+								<td>${user.positionName}</td>
 								<td>${user.phoneNum}</td>
 								<td><input class="user-id" type="checkbox" value="${user.userId}" ${user.managerYn eq 'Y' ? 'checked' : ''} onchange="saveManager(event)"></td>
-								<td><input class="user-id" type="checkbox" value="${user.userId}" ${user.registrationYn eq 'Y' ? 'checked' : ''} onchange="saveRegistration(event)"></td>
+								<td><input class="btn btn-outline-dark" type="button" value="삭제" data-bs-toggle="modal" data-bs-target="#validationModal" data-bs-whatever="@getbootstrap"></td>
 							</tr>
 						</c:forEach>
 					</c:if>
 					</tbody>
 				</table>
 			</div>
+
+			<!-- 삭제 확인 모달 -->
+			<div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content" id="modify-modal">
+						<div class="modal-header">
+							<h1 class="modal-title fs-5" id="exampleModalLabel1">삭제 확인</h1>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							사용자를 삭제하시겠습니까?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn" onclick="removeUser()" style="border-color: #b5b5b5">확인</button>
+						</div>
+					</div>
+				</div>
+				<!-- 모달끝 -->
 		</div>
 	</div>
 </div>
@@ -164,6 +272,7 @@
 <script src="/bootstrap/js/demo/chart-pie-demo.js"></script>
 
 <script src="/js/user/save-manager.js"></script>
+<script src="/js/user/remove-user.js"></script>
 
 
 </body>

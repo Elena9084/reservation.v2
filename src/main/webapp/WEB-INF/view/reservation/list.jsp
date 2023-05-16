@@ -65,7 +65,7 @@
                     console.log("#등록된 일정 클릭#");
                     console.log(arg.event);
 
-                    location.href="/reservation/detail?reservationCode=${arg.id}"
+                    location.href="/reservation/detail?reservationSeq=${arg.id}"
                 },
                 editable: true,
                 dayMaxEvents: true, // allow "more" link when too many events
@@ -105,7 +105,9 @@
         <div class="select-wrapper">
             <select class="form-select location-dropdown modify-type" id="resource-code" aria-label="Default select example" style="width: auto; height: 30px; border: solid 1px darkgray; border-radius: 4px;" onchange="calendarLoad()">
                 <c:forEach items="${resourceList}" var="resource">
-                    <option value="${resource.resourceCode}" id="modify-resource-location-r"  <c:if test="${param.resourceCode eq resource.resourceCode}">selected</c:if> >${resource.resourceName}</option>
+                    <c:if test="${resource.useYn eq 'Y'}">
+                        <option value="${resource.resourceCode}" id="modify-resource-location-r"  <c:if test="${param.resourceCode eq resource.resourceCode}">selected</c:if> >${resource.resourceName}</option>
+                    </c:if>
                 </c:forEach>
             </select>
         </div>

@@ -95,7 +95,7 @@
     <div class="container"  style="max-width: none; height: 100%;">
       <div>
         <div class="filter-title">
-          <p style="padding-top: 10px; font-weight: bold;" >${resource.resourceName}<p>
+          <p style="padding-top: 10px; font-weight: bold;" >${reservation.resourceName}<p>
         </div>
         <hr>
 
@@ -121,7 +121,7 @@
             </div>
             <div class="col-lg-9 col-sm-12">
               <div class="row mo-display-flex">
-                <input class="resource-code " name="resourceCode" id="resourceCode" type="hidden" value="${resource.resourceCode}">
+                <input class="resource-code " name="resourceCode" id="resourceCode" type="hidden" value="${reservation.reservationSeq}">
                 <div class="col-lg-6 col-sm-6 mo-display-flex-half">
                   <input class="search-date" name="reservationStartDate" type="date"  value="<fmt:formatDate value="${reservation.reservationStartDate}" pattern="yyyy-MM-dd" />" disabled style="background-color: #ffffff">
                 </div>

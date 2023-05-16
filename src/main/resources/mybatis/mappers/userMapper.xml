@@ -7,15 +7,11 @@
 
     <select id="selectUserOne" resultType="com.reservation.v2.csm.model.UserModel">
         SELECT *
-        FROM REG_USER
+        FROM RES_USER
         WHERE USER_ID = #{userId} AND PASSWORD = #{password}
         AND DELETE_YN = 'N'
         AND REGISTRATION_YN = 'Y'
     </select>
-
-
-
-
 
 
 </mapper>

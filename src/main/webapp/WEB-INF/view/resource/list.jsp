@@ -78,9 +78,6 @@
                                 <select class="form-select location-dropdown" id="menuCode_select" name="menuCode" aria-label="Default select example">
                                     <c:forEach items="${menuMap}" var="menu">
                                         <option value="${menu.key}" <c:if test="${param.menuCode eq menu.key}">selected</c:if> >${menu.value}</option>
-<%--                                    <option value="R001" <c:if test="${param.menuCode eq 'R001'} ">selected</c:if> >${param.menuCode}회의실</option>--%>
-<%--                                    <option value="H001" <c:if test="${param.menuCode eq 'H001'} ">selected</c:if> >${param.menuCode}헬스키퍼</option>--%>
-<%--                                    <option value="C001" <c:if test="${param.menuCode eq 'C001'} ">selected</c:if> >${param.menuCode}차량</option>--%>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -188,11 +185,13 @@
             <div class="list-container h-75">
                 <table class="table table-hover">
                     <colgroup>
-                        <col style="width: 80%;"/>
-                        <col style="width: 20%;"/>
+                        <col style="width: 5%;"/>
+                        <col style="width: 85%;"/>
+                        <col style="width: 10%;"/>
                     </colgroup>
                     <thead>
                     <tr>
+                        <th scope="col"></th>
                         <th scope="col">자원명</th>
                         <th scope="col">수정</th>
                     </tr>
@@ -202,6 +201,7 @@
                         <c:forEach var="resource" items="${resourceList}" varStatus="status" >
                             <tr>
                                 <input value="${resource.resourceCode}" type="hidden">
+                                <td>${status.count}</td>
                                 <td>${resource.resourceName}</td>
                                 <td><button type="button" class="btn modify-btn" style="border: solid 1px #dee2e6;  border-radius: 5px;"  data-bs-toggle="modal" data-bs-target="#exampleModal1" data-bs-whatever="@getbootstrap" onclick="loadModifyModal(event)">수정</button></td>
                             </tr>

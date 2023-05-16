@@ -56,7 +56,7 @@
 
       <!-- 내용시작 -->
       <div class="list-container h-75">
-        <h5 style="margin-bottom: 10px;">예약/대여 현황 조회</h5>
+        <h5 style="margin-bottom: 20px; font-weight: bold;">예약/대여 현황 조회</h5>
         <table class="table table-hover">
           <colgroup>
             <col style="width: 20%;"/>
@@ -77,7 +77,7 @@
           <tbody id="noticeList">
           <c:if test="${reservationList != null}">
             <c:forEach var="reservation" items="${reservationList}" varStatus="status" >
-              <tr onclick="location.href='/reservation/detail?reservationCode=${reservation.reservationSeq}'">
+              <tr onclick="location.href='/reservation/detail?reservationSeq=${reservation.reservationSeq}'">
                 <input value="${reservation.reservationSeq}" type="hidden" id="reservationSeq">
                 <td>${reservation.resourceLocation} ${reservation.menuName}</td>
                 <td>${reservation.resourceName}</td>
